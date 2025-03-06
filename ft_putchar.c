@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 12:42:29 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/06 20:47:42 by lenygarcia       ###   ########.fr       */
+/*   Created: 2025/03/06 20:05:16 by lenygarcia        #+#    #+#             */
+/*   Updated: 2025/03/06 20:06:11 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dst, const char *src)
-{
-	int	i;
+#include "libft.h"
 
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
 }

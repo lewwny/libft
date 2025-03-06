@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 12:42:29 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/06 20:47:42 by lenygarcia       ###   ########.fr       */
+/*   Created: 2025/03/06 20:28:35 by lenygarcia        #+#    #+#             */
+/*   Updated: 2025/03/06 20:28:53 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dst, const char *src)
+#include "libft.h"
+
+void	ft_putstr_fd(char const *s, int fd)
 {
 	int	i;
 
 	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
+	while (s[i])
 		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
+	write(fd, s, i);
 }
