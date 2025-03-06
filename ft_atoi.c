@@ -6,9 +6,16 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:27:51 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/06 12:31:48 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/03/06 21:01:49 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+static int	isspace(char c)
+{
+	if ((c == 32) || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
+}
 
 int	ft_atoi(const char *str)
 {
@@ -19,6 +26,8 @@ int	ft_atoi(const char *str)
 	i = 0;
 	neg = 1;
 	res = 0;
+	while (isspace(str[i]))
+		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
@@ -30,5 +39,5 @@ int	ft_atoi(const char *str)
 		res = res * 10 + (str[i] - 48);
 		i++;
 	}
-	return (res);
+	return (res * neg);
 }
