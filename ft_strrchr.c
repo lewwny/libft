@@ -1,41 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 18:43:50 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/07 10:49:04 by lenygarcia       ###   ########.fr       */
+/*   Created: 2025/03/07 11:04:04 by lenygarcia        #+#    #+#             */
+/*   Updated: 2025/03/07 11:12:31 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *s1, const char *s2, size_t n)
+char	*ft_strrchr(const char *s, int c)
 {
 	unsigned int	i;
 	unsigned int	j;
+	unsigned int	o;
+	unsigned char	d;
+	size_t			size;
 
 	i = 0;
 	j = 0;
-	while (s1[i])
-		i++;
-	while (j < n)
+	o = 0;
+	size = ft_strlen(s);
+	d = (unsigned char) c;
+	while (i < size + 1)
 	{
-		s1[i] = s2[j];
+		if (d == s[i])
+		{
+			j = i;
+			o = 1;
+		}
 		i++;
-		j++;
 	}
-	s1[i] = '\0';
-	return (s1);
+	if (o == 0)
+		return (NULL);
+	return ((char *) &s[j]);
 }
 /*
 #include <stdio.h>
 int	main(int argc, char **argv)
 {
-	if (argc != 3)
+	if (argc != 2)
 		return (1);
-	printf("%s", ft_strncat(argv[1], argv[2], 5));
+	printf("%s", ft_strrchr(argv[1], '\0'));
 	return (0);
 }*/

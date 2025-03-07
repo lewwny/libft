@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 19:35:09 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/07 08:25:51 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/03/07 11:34:39 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,14 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr(char const *s);
 void	ft_putstr_fd(char const *s, int fd);
 
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 
 char	*ft_itoa(int n);
-char	*ft_strcat(char *restrict s1, const char *restrict s2);
+char	*ft_strcat(char *s1, const char *s2);
 char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strdup(const char *s1);
-char	*ft_strncat(char *restrict s1, const char *restrict s2, size_t n);
+char	*ft_strncat(char *s1, const char *s2, size_t n);
 char	*ft_strncpy(char *dst, const char *src, size_t len);
 
 size_t	ft_strlen(const char *s);

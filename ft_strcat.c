@@ -6,11 +6,11 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:32:43 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/06 12:41:05 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/03/07 10:48:40 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *restrict s1, const char *restrict s2)
+char	*ft_strcat(char *s1, const char *s2)
 {
 	int	i;
 	int	j;
