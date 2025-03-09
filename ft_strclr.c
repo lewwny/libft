@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/09 19:51:22 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/09 19:53:04 by lenygarcia       ###   ########.fr       */
+/*   Created: 2025/03/09 20:51:02 by lenygarcia        #+#    #+#             */
+/*   Updated: 2025/03/09 20:53:28 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_strclr(char *s)
 {
 	size_t	i;
 
+	if (!s)
+		return ;
 	i = 0;
 	while (s[i])
-		i++;
-	return (i);
+		s[i++] = '\0';
 }
