@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 11:04:04 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/10 10:35:52 by lenygarcia       ###   ########.fr       */
+/*   Created: 2025/03/10 10:46:27 by lenygarcia        #+#    #+#             */
+/*   Updated: 2025/03/10 11:10:49 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int				i;
-	unsigned char	d;
+	long	i;
 
-	i = (int) ft_strlen(s);
-	d = (unsigned char) c;
-	while (i >= 0)
+	if (dst < src)
 	{
-		if (d == s[i])
-			return ((char *)(s + i));
-		i--;
+		i = 0;
+		while ((size_t)i < len)
+		{
+			*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+			i++;
+		}
+		return (dst);
 	}
-	return (NULL);
+	else
+	{
+		i = len - 1;
+		while (i >= 0)
+		{
+			*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+			i--;
+		}
+		return (dst);
+	}
 }
-/*
-#include <stdio.h>
-int	main(int argc, char **argv)
-{
-	if (argc != 2)
-		return (1);
-	printf("%s", ft_strrchr(argv[1], '\0'));
-	return (0);
-}*/

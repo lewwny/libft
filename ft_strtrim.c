@@ -6,25 +6,32 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:52:23 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/09 19:45:30 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/03/10 10:17:44 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_space(char c)
+static int	in_set(char c, char const *s)
 {
-	if ((c == 32) || (c >= 9 && c <= 13))
-		return (1);
+	unsigned int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
-static void	back_space(char *str)
+static void	back_space(char *str, char const *set)
 {
 	int	i;
 
 	i = ft_strlen(str);
-	while (i > 0 && is_space(str[i - 1]))
+	while (i > 0 && in_set(str[i - 1], set))
 	{
 		str[i] = '\0';
 		i--;
@@ -32,7 +39,7 @@ static void	back_space(char *str)
 	str[i] = '\0';
 }
 
-char	*ft_strtrim(char const *s)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		i;
 	int		j;
@@ -40,14 +47,14 @@ char	*ft_strtrim(char const *s)
 
 	i = 0;
 	j = 0;
-	res = (char *) malloc(sizeof(char) * (ft_strlen(s) + 1));
+	res = (char *) malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!res)
 		return (NULL);
-	while (is_space(s[i]))
+	while (in_set(s1[i], set))
 		i++;
-	while (s[i])
-		res[j++] = s[i++];
+	while (s1[i])
+		res[j++] = s1[i++];
 	res[j] = '\0';
-	back_space(res);
+	back_space(res, set);
 	return (res);
 }

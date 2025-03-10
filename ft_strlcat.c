@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 11:04:04 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/10 10:35:52 by lenygarcia       ###   ########.fr       */
+/*   Created: 2025/03/10 10:57:50 by lenygarcia        #+#    #+#             */
+/*   Updated: 2025/03/10 10:58:02 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	int				i;
-	unsigned char	d;
+	size_t	i;
+	size_t	j;
 
-	i = (int) ft_strlen(s);
-	d = (unsigned char) c;
-	while (i >= 0)
+	i = 0;
+	while (dst[i] != '\0' && i < size)
+		i++;
+	j = i;
+	if (size < 1)
+		return (j + ft_strlen(src));
+	while (src[i - j] != '\0' && i < size - 1)
 	{
-		if (d == s[i])
-			return ((char *)(s + i));
-		i--;
+		dst[i] = src[i - j];
+		i++;
 	}
-	return (NULL);
+	if (j < size)
+		dst[i] = '\0';
+	return (j + ft_strlen(src));
 }
-/*
-#include <stdio.h>
-int	main(int argc, char **argv)
-{
-	if (argc != 2)
-		return (1);
-	printf("%s", ft_strrchr(argv[1], '\0'));
-	return (0);
-}*/
