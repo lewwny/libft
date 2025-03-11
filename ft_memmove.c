@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:46:27 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/10 11:10:49 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/03/11 19:48:11 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	long	i;
 
+	if (dst == src || len == 0)
+		return (dst);
 	if (dst < src)
 	{
 		i = 0;
