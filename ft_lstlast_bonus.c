@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 11:04:04 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/11 19:13:56 by lenygarcia       ###   ########.fr       */
+/*   Created: 2025/03/10 21:41:02 by lenygarcia        #+#    #+#             */
+/*   Updated: 2025/03/10 21:42:40 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	const char		*last;
-	unsigned char	d;
-
-	d = (unsigned char) c;
-	last = NULL;
-	while (*s)
-	{
-		if (d == *s)
-			last = s;
-		s++;
-	}
-	if (d == '\0')
-		return ((char *) s);
-	return ((char *) last);
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
-/*
-#include <stdio.h>
-int	main(int argc, char **argv)
-{
-	if (argc != 2)
-		return (1);
-	printf("%s", ft_strrchr(argv[1], '\0'));
-	return (0);
-}*/

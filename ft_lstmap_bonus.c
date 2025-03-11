@@ -1,47 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 18:11:06 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/10 21:13:41 by lenygarcia       ###   ########.fr       */
+/*   Created: 2025/03/10 22:14:07 by lenygarcia        #+#    #+#             */
+/*   Updated: 2025/03/11 09:59:30 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int		size;
-	char	*dup;
+	t_list	*new_list;
+	t_list	*new_node;
+	void	*new_content;
 
-	size = 0;
-	while (s1[size])
-		size++;
-	dup = (char *) malloc(sizeof(char) * (size + 1));
-	if (!dup)
+	if (!lst || !f || !del)
 		return (NULL);
-	size = 0;
-	while (s1[size])
+	new_list = NULL;
+	while (lst)
 	{
-		dup[size] = s1[size];
-		size++;
+		new_content = f(lst->content);
+		new_node = ft_lstnew(new_content);
+		if (!new_node)
+		{
+			del(new_content);
+			ft_lstclear(&new_list, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_list, new_node);
+		lst = lst->next;
 	}
-	dup[size] = '\0';
-	return (dup);
+	return (new_list);
 }
-/*
-#include <stdio.h>
-int	main(int argc, char **argv)
-{
-	char	*test;
-
-	if (argc !=2)
-		return (1);
-	test = ft_strdup(argv[1]);
-	printf("%s\n", test);
-	free(test);
-	return (0);
-}*/

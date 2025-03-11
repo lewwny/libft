@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 11:04:04 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/11 19:13:56 by lenygarcia       ###   ########.fr       */
+/*   Created: 2025/03/10 21:21:13 by lenygarcia        #+#    #+#             */
+/*   Updated: 2025/03/10 21:23:05 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+t_list	*ft_lstnew(void *content)
 {
-	const char		*last;
-	unsigned char	d;
+	t_list	*lst;
 
-	d = (unsigned char) c;
-	last = NULL;
-	while (*s)
-	{
-		if (d == *s)
-			last = s;
-		s++;
-	}
-	if (d == '\0')
-		return ((char *) s);
-	return ((char *) last);
+	lst = (t_list *) malloc(sizeof(t_list));
+	if (!lst)
+		return (NULL);
+	lst->content = content;
+	lst->next = NULL;
+	return (lst);
 }
-/*
-#include <stdio.h>
-int	main(int argc, char **argv)
-{
-	if (argc != 2)
-		return (1);
-	printf("%s", ft_strrchr(argv[1], '\0'));
-	return (0);
-}*/

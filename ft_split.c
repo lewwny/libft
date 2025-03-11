@@ -6,7 +6,7 @@
 /*   By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 14:21:56 by lenygarcia        #+#    #+#             */
-/*   Updated: 2025/03/10 10:06:43 by lenygarcia       ###   ########.fr       */
+/*   Updated: 2025/03/11 09:50:43 by lenygarcia       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,68 @@ static char	*copystring(char const *s, int start, int end)
 	return (res);
 }
 
-static void	machination(int *i, char const *s, char c, int *debut)
+static char	*free_array(char **res, int j, char *tmp)
 {
-	while (s[*i] == c)
-		(*i)++;
-	*debut = *i;
-	while (s[*i] && s[*i] != c)
-		(*i)++;
+	int	i;
+
+	if (!tmp)
+	{
+		i = 0;
+		while (i < j)
+			free(res[i++]);
+		free(res);
+		return (NULL);
+	}
+	return (tmp);
+}
+
+static int	count(char const *s, char c)
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
+		{
+			count++;
+			while (s[i] && s[i] != c)
+				i++;
+		}
+	}
+	return (count);
+}
+
+static char	**machination(char const *s, char c, int *i, int *j)
+{
+	int		debut;
+	char	*tmp;
+	char	**res;
+
+	res = (char **) malloc(sizeof(char *) * (count(s, c) + 1));
+	if (!res)
+		return (NULL);
+	while (s[*i])
+	{
+		while (s[*i] == c)
+			(*i)++;
+		debut = *i;
+		while (s[*i] && s[*i] != c)
+			(*i)++;
+		if (*i > debut)
+		{
+			tmp = copystring(s, debut, *i);
+			if (!free_array(res, *j, tmp))
+				return (NULL);
+			res[(*j)++] = tmp;
+		}
+	}
+	res[*j] = NULL;
+	return (res);
 }
 
 char	**ft_split(char const *s, char c)
@@ -45,30 +100,19 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	int		j;
 	char	**res;
-	char	*tmp;
-	int		debut;
 
 	i = 0;
 	j = 0;
 	if (!s)
 		return (NULL);
-	res = (char **) malloc(sizeof(char *) * (ft_strlen(s) + 1));
+	res = machination(s, c, &i, &j);
 	if (!res)
 		return (NULL);
-	while (s[i])
-	{
-		machination(&i, s, c, &debut);
-		if (i > debut)
-		{
-			tmp = copystring(s, debut, i);
-			res[j++] = tmp;
-		}
-	}
-	res[j] = NULL;
 	return (res);
 }
 /*
 int	main(void)
 {
-	ft_split("", 'z');
+	ft_split("bonjourzzaa", 'z');
+
 }*/

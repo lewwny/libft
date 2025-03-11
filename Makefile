@@ -6,18 +6,18 @@
 #    By: lenygarcia <marvin@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/06 20:35:06 by lenygarcia        #+#    #+#              #
-#    Updated: 2025/03/10 11:15:15 by lenygarcia       ###   ########.fr        #
+#    Updated: 2025/03/10 21:31:22 by lenygarcia       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC	= cc -g
 CFLAGS	= -Wall -Wextra -Werror
-SRCS	= $(wildcard *.c)
-BON	= $(wildcard *bonus.c)
+SRCS	= $(filter-out %_bonus.c, $(wildcard *.c))
+BONUS	= $(wildcard *_bonus.c)
 HEADERS	= libft.h
 OBJS	= ${SRCS:.c=.o}
 NAME	= libft.a
-OBJ	= ${BON:.c=.o}
+BOBJS	= ${BONUS:.c=.o}
 
 all: ${NAME}
 
@@ -29,12 +29,13 @@ $(NAME): $(OBJS)
 	${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-	rm -f ${OBJS}
+	rm -f ${OBJS} ${BOBJS}
 
 fclean: clean
 	rm -f ${NAME}
 
 re:	fclean all
 
-bonus:	all
-	${BON}
+bonus: $(NAME) $(BOBJS)
+	ar rcs $(NAME) $(BOBJS)
+	@echo "libft.a (bonus) ready"
